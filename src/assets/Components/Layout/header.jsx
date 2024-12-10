@@ -1,90 +1,33 @@
-// import React , { useState } from 'react';
-
-// const HeaderWithMenu = () => {
-//     const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-//     const toggleMenu = () => {
-//       setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
-//     };
-// const Header = () => {
-//   return (
-//     <header>
-
-
-      
-
-//       {/* Navigation Bar */}
-//       <nav className="nav">
-//         <ul className="nav-links">
-//           <li><a href="#">Home</a></li>
-//           <li><a href="#">Food</a></li>
-//           <li><a href="#">Contact</a></li>
-//           <li><a href="#">Sign In</a></li>
-//           <li><a href="#">Login</a></li>
-//         </ul>
-
-//         {/* 3 Dots Icon Section */}
-//       <div className="menu-icon" onClick={toggleMenu}>
-//         <span className="dot"></span>
-//         <span className="dot"></span>
-//         <span className="dot"></span>
-//       </div>
-      
-//       {isMenuOpen && (
-//         <div className="menu-dropdown">
-//           <ul>
-//             <li><a href="#">Login</a></li>
-//             <li><a href="#">Sign In</a></li>
-//           </ul>
-//         </div>
-
-//       </nav>
-//     </header>
-//   );
-// }
-
-// export default Header;
+import React, { useEffect, useState } from 'react';
 
 
 
-import React, { useState } from 'react';
-
+// const API_URL = "http://localhost:3000/users";
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Toggle the menu visibility
-  };
 
   return (
     <header>
+      <h1>Meal Mind </h1>
       {/* Navigation Bar */}
       <nav className="nav">
         <ul className="nav-links">
           <li><a href="#">Home</a></li>
           <li><a href="#">Food</a></li>
           <li><a href="#">Contact</a></li>
-          {/* <li><a href="#">Sign In</a></li>
-          <li><a href="#">Login</a></li> */}
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="Signup">SignUp</a></li>
         </ul>
 
-        {/* 3 Dots Icon Section */}
-        <div className="menu-icon" onClick={toggleMenu}>
-          <span className="dot"></span>
-          <span className="dot"></span>
-          <span className="dot"></span>
+        <div className="logo">
+          <img
+            src="https://th.bing.com/th?id=OIP.kueay3_Yyo9T9pSw4Y-C6QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
+            alt="Logo"
+            className="logo-img"
+          />
         </div>
-      </nav>
 
-      {/* Dropdown Menu for Login/Sign In */}
-      {isMenuOpen && (
-        <div className="menu-dropdown">
-          <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign In</a></li>
-          </ul>
-        </div>
-      )}
+      </nav>    
     </header>
   );
 };
