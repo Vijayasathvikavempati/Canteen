@@ -1,28 +1,64 @@
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
+
+// import Header from "./Components/Header"
+// import Signup from "./Pages/Signup"
+
+// function Canteen() {
+//   return (
+//     <>
+//           <Header />
+//           <Signup />
+
+//           </> 
+//       );
+//     }
+  
+// export default Canteen;
+   
+  
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import Header from "./assets/Components/Layout/Header"
-// import MainBody from './assets/Components/Layout/mainbody'
-// import  Main from "./assets/Components/Layout/Mainbody"
-// import Footer from "./assets/Components/Layout/Footer"
-import Signup from "./assets/Components/Layout/Signup"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './Components/Header';
+import Home from './Pages/Home';
+import Food from './Pages/Food';
+import Contact from './Pages/Contact';
+import SignUp from './Pages/Signup';
+import Login from './Pages/login';
+import UserHome from './Pages/user-homepage';
 
-function Canteen() {
+function App() {
   return (
-        <div className="canteen-container">
-          <Header />
-          {/* <MainBody /> */}
-          <Signup />
+    <Router>
+      <Header /> {/* The Header component */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/food" element={<Home />} />
+        <Route path="/contact" element={<Home />} />
+         
+        <Route path="/user-home" element={<UserHome />} />   
+      </Routes>
+      <Routes>
+      <Route path="/signup" element={<SignUp />} />
+        <Route path='/login' element={<Login/>} /> 
+        </Routes>
+        <Routes>
+        <Route path="/Food" element={<Food />} />
+        <Route path='/Contact' element={<Contact />} /> 
+        </Routes>
+        <Routes>
+        
+        </Routes>
+    </Router>
+  );
+}
 
-        </div>
-      );
-    }
-  
-export default Canteen;
-   
-  
-
+export default App;
 
 
