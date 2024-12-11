@@ -646,6 +646,71 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+// Styled components
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  margin: 0 auto;
+`;
+
+const FormGroup = styled.div`
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #ffa500; /* Highlight border color on focus */
+    outline: none;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: #5b460a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e1c054;
+  }
+`;
+
+const LoginLink = styled.span`
+  color: #5b460a;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: underline;
+
+  &:hover {
+    color: #e1c054;
+  }
+`;
 
 const SignUpForm = ({ setIsLogin, users, setUsers }) => {
   const [newUser, setNewUser] = useState({
@@ -691,50 +756,44 @@ const SignUpForm = ({ setIsLogin, users, setUsers }) => {
   };
 
   return (
-    <form className="login-form" onSubmit={addUser}>
-      <div className="form-group">
-        <input
+    <Form onSubmit={addUser}>
+      <FormGroup>
+        <Input
           type="text"
-          className="name"
           value={newUser.name}
           placeholder="Name"
           onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
         />
-        {validationErrors.name && <p className="error-message">{validationErrors.name}</p>}
-      </div>
+        {validationErrors.name && <ErrorMessage>{validationErrors.name}</ErrorMessage>}
+      </FormGroup>
 
-      <div className="form-group">
-        <input
+      <FormGroup>
+        <Input
           type="email"
-          className="name"
           value={newUser.email}
           placeholder="Enter your Email"
           onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
         />
-        {validationErrors.email && <p className="error-message">{validationErrors.email}</p>}
-      </div>
+        {validationErrors.email && <ErrorMessage>{validationErrors.email}</ErrorMessage>}
+      </FormGroup>
 
-      <div className="form-group">
-        <input
+      <FormGroup>
+        <Input
           type="password"
-          className="password"
           value={newUser.password}
           placeholder="Enter your password"
           onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
         />
-        {validationErrors.password && <p className="error-message">{validationErrors.password}</p>}
-      </div>
+        {validationErrors.password && <ErrorMessage>{validationErrors.password}</ErrorMessage>}
+      </FormGroup>
 
-      <button type="submit" className="btn-login">
-        Sign-up
-      </button>
+      <Button type="submit">Sign-up</Button>
+
       <p>
         Already have an account?{" "}
-        <span onClick={() => setIsLogin(true)} style={{ cursor: "pointer" }}>
-          Login
-        </span>
+        <LoginLink onClick={() => setIsLogin(true)}>Login</LoginLink>
       </p>
-    </form>
+    </Form>
   );
 };
 
