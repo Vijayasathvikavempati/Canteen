@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// Styled components
-const HeaderWrapper = styled.header`
+// Styled components for logged-in header
+const LoginHeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,9 +26,9 @@ const LogoImage = styled.img`
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the NavTitle horizontally */
-  justify-content: center; /* Ensures the content is centered vertically */
-  height: 100%; /* Ensures that Nav takes up the full height available */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 const NavTitle = styled.h1`
@@ -36,7 +36,7 @@ const NavTitle = styled.h1`
   text-align: center;
   margin-bottom: 1rem;
   font-weight: 500;
-  width: 100%; /* Ensures the title spans the full width for centering */
+  width: 100%;
 `;
 
 const NavLinks = styled.ul`
@@ -50,24 +50,23 @@ const NavLinkStyled = styled(Link)`
   text-decoration: none;
   color: #fff;
   font-size: 1.1rem;
-  padding: 10px 20px; /* Add padding to make the link appear like a button */
-  border: 2px solid transparent; /* Default transparent border */
-  border-radius: 5px; /* Rounded corners for the button */
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-  display: inline-block; /* Make sure the link behaves like a block-level element */
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
 
   &:hover {
-    background-color: #442902; /* Change background color on hover */
-    color: #fff; /* Ensure the text remains white */
-    border-color: #442902 /* Optional: border color matching the background */
-    transform: scale(1.05); /* Slightly enlarge the link on hover */
+    background-color: #442902;
+    color: #fff;
+    border-color: #442902;
+    transform: scale(1.05);
   }
 `;
 
-
-const Header = () => {
+const loginheader = () => {
   return (
-    <HeaderWrapper>
+    <LoginHeaderWrapper>
       <Logo>
         <LogoImage
           src="https://th.bing.com/th?id=OIP.kueay3_Yyo9T9pSw4Y-C6QHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2"
@@ -77,24 +76,23 @@ const Header = () => {
       </Logo>
       <NavTitle>Fuel your body, feed your mind</NavTitle>
       <Nav>
-       
         <NavLinks>
           <li>
             <NavLinkStyled to="/">Home</NavLinkStyled>
           </li>
           <li>
-            <NavLinkStyled to="/signup">SignUp</NavLinkStyled>
+            <NavLinkStyled to="/Dashboard">Dashboard</NavLinkStyled>
           </li>
           <li>
-            <NavLinkStyled to="/login">Login</NavLinkStyled>
+            <NavLinkStyled to="/AboutUs">About Us</NavLinkStyled>
           </li>
-          {/* <li>
-            <NavLinkStyled to="/Dashboard">Dashboard</NavLinkStyled>
-          </li> */}
+          <li>
+            <NavLinkStyled to="/login">Log Out</NavLinkStyled> {/* This will log the user out */}
+          </li>
         </NavLinks>
       </Nav>
-    </HeaderWrapper>
+    </LoginHeaderWrapper>
   );
 };
 
-export default Header;
+export default loginheader;

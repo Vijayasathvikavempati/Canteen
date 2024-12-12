@@ -1,719 +1,12 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// const Log = () => {
-//   const API_URL = "http://localhost:3000/Users";
-//   const [users, setUsers] = useState([]);
-//   const [newUsers, setNewUsers] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [validationErrors, setValidationErrors] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-
-//   // Fetch all users
-//   const fetchUsers = async () => {
-//     try {
-//       const response = await axios.get(API_URL);
-//       setUsers(response.data);
-//     } catch (error) {
-//       console.error("Error in fetching users", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers(); // Fetch users on component mount
-//   }, []);
-
-//   // Add a new user
-//   const addUser = async (e) => {
-//     e.preventDefault();
-
-//     // Validation logic
-//     const errors = {};
-//     if (!newUsers.name) errors.name = "Name is required.";
-//     if (!newUsers.email) errors.email = "Email is required.";
-//     else if (!/\S+@\S+/.test(newUsers.email)) errors.email = "Enter a valid email.";
-//     if (!newUsers.password) errors.password = "Password is required.";
-//     else if (newUsers.password.length < 3) errors.password = "Password must be at least 3 characters long.";
-
-//     setValidationErrors(errors);
-
-   
-
-//     try {
-//       const response = await axios.post(API_URL, newUsers);
-//       setUsers([...users, response.data]);
-//       setNewUsers({ name: "", email: "", password: "" });
-//       setValidationErrors({});
-//       console.log("User added", response.data);
-//     } catch (error) {
-//       console.error("Error in adding user", error);
-//     }
-//   };
-
-//   return (
-//     <div className="login-page-container" id="loginPageContainer">
-//       <div className="login-container">
-//         <h2 className="head">Sign Up</h2>
-
-//         <form className="login-form" onSubmit={addUser}>
-//           <div className="form-group">
-//             <input
-//               type="text"
-//               className="name"
-//               value={newUsers.name}
-//               placeholder="Name"
-//               onChange={(e) =>
-//                 setNewUsers({ ...newUsers, name: e.target.value })
-//               }
-//             />
-//             {validationErrors.name && (
-//               <p className="error-message">{validationErrors.name}</p>
-//             )}
-//           </div>
-
-//           <div className="form-group">
-//             <input
-//               type="email"
-//               className="name"
-//               value={newUsers.email}
-//               placeholder="Enter your Email"
-//               onChange={(e) =>
-//                 setNewUsers({ ...newUsers, email: e.target.value })
-//               }
-//             />
-//             {validationErrors.email && (
-//               <p className="error-message">{validationErrors.email}</p>
-//             )}
-//           </div>
-
-//           <div className="form-group">
-//             <input
-//               type="password"
-//               className="password"
-//               value={newUsers.password}
-//               placeholder="Enter your password"
-//               onChange={(e) =>
-//                 setNewUsers({ ...newUsers, password: e.target.value })
-//               }
-//             />
-//             {validationErrors.password && (
-//               <p className="error-message">{validationErrors.password}</p>
-//             )}
-//           </div>
-
-//           <button type="submit" className="btn-login">
-//             Sign-up
-//           </button>
-//           <p>Already have an account? Login</p>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Log;
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// const Log = () => {
-//   const API_URL = "http://localhost:3000/Users";
-//   const [users, setUsers] = useState([]);
-//   const [newUsers, setNewUsers] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [loginData, setLoginData] = useState({
-//     email: "",
-//     password: "",
-//   });
-//   const [validationErrors, setValidationErrors] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [isLogin, setIsLogin] = useState(false); // New state to toggle forms
-
-//   // Fetch all users
-//   const fetchUsers = async () => {
-//     try {
-//       const response = await axios.get(API_URL);
-//       setUsers(response.data);
-//     } catch (error) {
-//       console.error("Error in fetching users", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers(); // Fetch users on component mount
-//   }, []);
-
-//   // Add a new user (Sign Up)
-//   const addUser = async (e) => {
-//     e.preventDefault();
-
-//     // Validation logic for Sign-Up
-//     const errors = {};
-//     if (!newUsers.name) errors.name = "Name is required.";
-//     if (!newUsers.email) errors.email = "Email is required.";
-//     else if (!/\S+@\S+/.test(newUsers.email)) errors.email = "Enter a valid email.";
-//     if (!newUsers.password) errors.password = "Password is required.";
-//     else if (newUsers.password.length < 3) errors.password = "Password must be at least 3 characters long.";
-
-//     setValidationErrors(errors);
-
-//     if (Object.keys(errors).length > 0) return; // Don't proceed if there are errors
-
-//     try {
-//       const response = await axios.post(API_URL, newUsers);
-//       setUsers([...users, response.data]);
-//       setNewUsers({ name: "", email: "", password: "" });
-//       setValidationErrors({});
-//       console.log("User added", response.data);
-//       setIsLogin(true); // After sign-up, switch to Login form
-//     } catch (error) {
-//       console.error("Error in adding user", error);
-//     }
-//   };
-
-//   // Handle login form submission
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-
-//     const foundUser = users.find(
-//       (user) => user.email === loginData.email && user.password === loginData.password
-//     );
-
-//     if (foundUser) {
-//       alert("Login successful");
-//     } else {
-//       alert("Invalid credentials");
-//     }
-//   };
-
-//   return (
-//     <div className="login-page-container" id="loginPageContainer">
-//       <div className="login-container">
-//         <h2 className="head">{isLogin ? "Login" : "Sign Up"}</h2>
-
-//         {/* Toggle between Sign Up and Login form */}
-//         {!isLogin ? (
-//           <form className="login-form" onSubmit={addUser}>
-//             <div className="form-group">
-//               <input
-//                 type="text"
-//                 className="name"
-//                 value={newUsers.name}
-//                 placeholder="Name"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, name: e.target.value })
-//                 }
-//               />
-//               {validationErrors.name && (
-//                 <p className="error-message">{validationErrors.name}</p>
-//               )}
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="email"
-//                 className="name"
-//                 value={newUsers.email}
-//                 placeholder="Enter your Email"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, email: e.target.value })
-//                 }
-//               />
-//               {validationErrors.email && (
-//                 <p className="error-message">{validationErrors.email}</p>
-//               )}
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="password"
-//                 className="password"
-//                 value={newUsers.password}
-//                 placeholder="Enter your password"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, password: e.target.value })
-//                 }
-//               />
-//               {validationErrors.password && (
-//                 <p className="error-message">{validationErrors.password}</p>
-//               )}
-//             </div>
-
-//             <button type="submit" className="btn-login">
-//               Sign-up
-//             </button>
-//             <p>
-//               Already have an account?{" "}
-//               <span onClick={() => setIsLogin(true)} style={{ cursor: "pointer" }}>
-//                 Login
-//               </span>
-//             </p>
-//           </form>
-//         ) : (
-//           <form className="login-form" onSubmit={handleLogin}>
-//             <div className="form-group">
-//               <input
-//                 type="email"
-//                 className="name"
-//                 value={loginData.email}
-//                 placeholder="Enter your Email"
-//                 onChange={(e) =>
-//                   setLoginData({ ...loginData, email: e.target.value })
-//                 }
-//               />
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="password"
-//                 className="password"
-//                 value={loginData.password}
-//                 placeholder="Enter your password"
-//                 onChange={(e) =>
-//                   setLoginData({ ...loginData, password: e.target.value })
-//                 }
-//               />
-//             </div>
-
-//             <button type="submit" className="btn-login">
-//               Login
-//             </button>
-//             <p>
-//               Don't have an account?{" "}
-//               <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer" }}>
-//                 Sign Up
-//               </span>
-//             </p>
-//           </form>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Log;
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// const Log = () => {
-//   const API_URL = "http://localhost:3000/Users";
-//   const [users, setUsers] = useState([]);
-//   const [newUsers, setNewUsers] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [loginData, setLoginData] = useState({
-//     email: "",
-//     password: "",
-//   });
-//   const [validationErrors, setValidationErrors] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [isLogin, setIsLogin] = useState(false); // Toggle between forms
-//   const [loginStatus, setLoginStatus] = useState(""); // Track login status
-
-//   // Fetch all users
-//   const fetchUsers = async () => {
-//     try {
-//       const response = await axios.get(API_URL);
-//       setUsers(response.data);
-//     } catch (error) {
-//       console.error("Error in fetching users", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers(); // Fetch users on component mount
-//   }, []);
-
-//   // Add a new user (Sign Up)
-//   const addUser = async (e) => {
-//     e.preventDefault();
-
-//     // Validation logic for Sign-Up
-//     const errors = {};
-//     if (!newUsers.name) errors.name = "Name is required.";
-//     if (!newUsers.email) errors.email = "Email is required.";
-//     else if (!/\S+@\S+/.test(newUsers.email)) errors.email = "Enter a valid email.";
-//     if (!newUsers.password) errors.password = "Password is required.";
-//     else if (newUsers.password.length < 3) errors.password = "Password must be at least 3 characters long.";
-
-//     setValidationErrors(errors);
-
-//     if (Object.keys(errors).length > 0) return; // Don't proceed if there are errors
-
-//     try {
-//       const response = await axios.post(API_URL, newUsers);
-//       setUsers([...users, response.data]);
-//       setNewUsers({ name: "", email: "", password: "" });
-//       setValidationErrors({});
-//       console.log("User added", response.data);
-//       setIsLogin(true); // After sign-up, switch to Login form
-//     } catch (error) {
-//       console.error("Error in adding user", error);
-//     }
-//   };
-
-//   // Handle login form submission
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-
-//     const foundUser = users.find(
-//       (user) => user.email === loginData.email && user.password === loginData.password
-//     );
-
-//     if (foundUser) {
-//       setLoginStatus("Login successful");
-//       setLoginData({ email: "", password: "" }); // Clear login form fields
-//     } else {
-//       setLoginStatus("Invalid credentials, please try again.");
-//     }
-//   };
-
-//   return (
-//     <div className="login-page-container" id="loginPageContainer">
-//       <div className="login-container">
-//         <h2 className="head">{isLogin ? "Login" : "Sign Up"}</h2>
-
-//         {/* Toggle between Sign Up and Login form */}
-//         {!isLogin ? (
-//           <form className="login-form" onSubmit={addUser}>
-//             <div className="form-group">
-//               <input
-//                 type="text"
-//                 className="name"
-//                 value={newUsers.name}
-//                 placeholder="Name"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, name: e.target.value })
-//                 }
-//               />
-//               {validationErrors.name && (
-//                 <p className="error-message">{validationErrors.name}</p>
-//               )}
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="email"
-//                 className="name"
-//                 value={newUsers.email}
-//                 placeholder="Enter your Email"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, email: e.target.value })
-//                 }
-//               />
-//               {validationErrors.email && (
-//                 <p className="error-message">{validationErrors.email}</p>
-//               )}
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="password"
-//                 className="password"
-//                 value={newUsers.password}
-//                 placeholder="Enter your password"
-//                 onChange={(e) =>
-//                   setNewUsers({ ...newUsers, password: e.target.value })
-//                 }
-//               />
-//               {validationErrors.password && (
-//                 <p className="error-message">{validationErrors.password}</p>
-//               )}
-//             </div>
-
-//             <button type="submit" className="btn-login">
-//               Sign-up
-//             </button>
-//             <p>
-//               Already have an account?{" "}
-//               <span onClick={() => setIsLogin(true)} style={{ cursor: "pointer" }}>
-//                 Login
-//               </span>
-//             </p>
-//           </form>
-//         ) : (
-//           <form className="login-form" onSubmit={handleLogin}>
-//             <div className="form-group">
-//               <input
-//                 type="email"
-//                 className="name"
-//                 value={loginData.email}
-//                 placeholder="Enter your Email"
-//                 onChange={(e) =>
-//                   setLoginData({ ...loginData, email: e.target.value })
-//                 }
-//               />
-//             </div>
-
-//             <div className="form-group">
-//               <input
-//                 type="password"
-//                 className="password"
-//                 value={loginData.password}
-//                 placeholder="Enter your password"
-//                 onChange={(e) =>
-//                   setLoginData({ ...loginData, password: e.target.value })
-//                 }
-//               />
-//             </div>
-
-//             <button type="submit" className="btn-login">
-//               Login
-//             </button>
-//             <p>
-//               Don't have an account?{" "}
-//               <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer" }}>
-//                 Sign Up
-//               </span>
-//             </p>
-//           </form>
-//         )}
-
-//         {/* Display login status */}
-//         {loginStatus && (
-//           <p className={`login-status ${loginStatus === "Login successful" ? "success" : "error"}`}>
-//             {loginStatus}
-//           </p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Log;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import axios from "axios";
-
-// const SignUpForm = ({ setIsLogin, users }) => {
-//   const [newUser, setNewUser] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-//   const [validationErrors, setValidationErrors] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//   });
-
-//   const API_URL = "http://localhost:3000/Users";
-
-//   // Handle sign-up form submission
-//   const addUser = async (e) => {
-//     e.preventDefault();
-
-//     // Validation logic for Sign-Up
-//     const errors = {};
-//     if (!newUser.name) errors.name = "Name is required.";
-//     if (!newUser.email) errors.email = "Email is required.";
-//     else if (!/\S+@\S+/.test(newUser.email)) errors.email = "Enter a valid email.";
-//     if (!newUser.password) errors.password = "Password is required.";
-//     else if (newUser.password.length < 3) errors.password = "Password must be at least 3 characters long.";
-
-//     setValidationErrors(errors);
-
-//     if (Object.keys(errors).length > 0) return; // Don't proceed if there are errors
-
-//     try {
-//       const response = await axios.post(API_URL, newUser);
-//       users.push(response.data);
-//       setNewUser({ name: "", email: "", password: "" });
-//       setValidationErrors({});
-//       console.log("User added", response.data);
-//       setIsLogin(true); // After sign-up, switch to Login form
-//     } catch (error) {
-//       console.error("Error in adding user", error);
-//     }
-//   };
-
-//   return (
-//     <form className="login-form" onSubmit={addUser}>
-//       <div className="form-group">
-//         <input
-//           type="text"
-//           className="name"
-//           value={newUser.name}
-//           placeholder="Name"
-//           onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-//         />
-//         {validationErrors.name && <p className="error-message">{validationErrors.name}</p>}
-//       </div>
-
-//       <div className="form-group">
-//         <input
-//           type="email"
-//           className="name"
-//           value={newUser.email}
-//           placeholder="Enter your Email"
-//           onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-//         />
-//         {validationErrors.email && <p className="error-message">{validationErrors.email}</p>}
-//       </div>
-
-//       <div className="form-group">
-//         <input
-//           type="password"
-//           className="password"
-//           value={newUser.password}
-//           placeholder="Enter your password"
-//           onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-//         />
-//         {validationErrors.password && <p className="error-message">{validationErrors.password}</p>}
-//       </div>
-
-//       <button type="submit" className="btn-login">
-//         Sign-up
-//       </button>
-//       <p>
-//         Already have an account?{" "}
-//         <span onClick={() => setIsLogin(true)} style={{ cursor: "pointer" }}>
-//           Login
-//         </span>
-//       </p>
-//     </form>
-//   );
-// };
-
-// export default SignUpForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
+import styled from "styled-components"; // Import styled-components
 
-// Styled components
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-  margin: 0 auto;
-`;
+const API_URL = "http://localhost:3000/Users";
 
-const FormGroup = styled.div`
-  width: 100%;
-  margin-bottom: 15px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-
-  &:focus {
-    border-color: #ffa500; /* Highlight border color on focus */
-    outline: none;
-  }
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 0.9rem;
-  margin-top: 5px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: #5b460a;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #e1c054;
-  }
-`;
-
-const LoginLink = styled.span`
-  color: #5b460a;
-  cursor: pointer;
-  font-size: 1rem;
-  text-decoration: underline;
-
-  &:hover {
-    color: #e1c054;
-  }
-`;
-
-const SignUpForm = ({ setIsLogin, users, setUsers }) => {
-  const [newUser, setNewUser] = useState({
+const Log = () => {
+  const [users, setUsers] = useState([]);
+  const [newUsers, setNewUsers] = useState({
     name: "",
     email: "",
     password: "",
@@ -723,79 +16,189 @@ const SignUpForm = ({ setIsLogin, users, setUsers }) => {
     email: "",
     password: "",
   });
+  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
 
-  const API_URL = "http://localhost:3000/Users";
+  // Fetch all users
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(API_URL);
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error in fetching users", error);
+    }
+  };
 
-  // Handle sign-up form submission
+  useEffect(() => {
+    fetchUsers(); // Fetch users on component mount
+  }, []);
+
+  // Add a new user
   const addUser = async (e) => {
     e.preventDefault();
 
-    // Validation logic for Sign-Up
+    // Validation logic
     const errors = {};
-    if (!newUser.name) errors.name = "Name is required.";
-    if (!newUser.email) errors.email = "Email is required.";
-    else if (!/\S+@\S+/.test(newUser.email)) errors.email = "Enter a valid email.";
-    if (!newUser.password) errors.password = "Password is required.";
-    else if (newUser.password.length < 3) errors.password = "Password must be at least 3 characters long.";
+    if (!newUsers.name) errors.name = "Name is required.";
+    if (!newUsers.email) errors.email = "Email is required.";
+    else if (!/\S+@\S+/.test(newUsers.email)) errors.email = "Enter a valid email.";
+    if (!newUsers.password) errors.password = "Password is required.";
+    else if (newUsers.password.length < 3) errors.password = "Password must be at least 3 characters long.";
 
     setValidationErrors(errors);
 
-    if (Object.keys(errors).length > 0) return; // Don't proceed if there are errors
+    // If there are validation errors, don't submit the form
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
 
     try {
-      const response = await axios.post(API_URL, newUser);
-      // Add the new user to the users state
+      const response = await axios.post(API_URL, newUsers);
       setUsers([...users, response.data]);
-      setNewUser({ name: "", email: "", password: "" });
+      setNewUsers({ name: "", email: "", password: "" });
       setValidationErrors({});
+      setSuccessMessage("User successfully signed up!"); // Set success message
       console.log("User added", response.data);
-      setIsLogin(true); // After sign-up, switch to Login form
     } catch (error) {
       console.error("Error in adding user", error);
+      setSuccessMessage(""); // Clear success message in case of an error
     }
   };
 
   return (
-    <Form onSubmit={addUser}>
-      <FormGroup>
-        <Input
-          type="text"
-          value={newUser.name}
-          placeholder="Name"
-          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-        />
-        {validationErrors.name && <ErrorMessage>{validationErrors.name}</ErrorMessage>}
-      </FormGroup>
+    <LoginPageContainer>
+      <LoginContainer>
+        <Heading>Sign Up</Heading>
 
-      <FormGroup>
-        <Input
-          type="email"
-          value={newUser.email}
-          placeholder="Enter your Email"
-          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-        />
-        {validationErrors.email && <ErrorMessage>{validationErrors.email}</ErrorMessage>}
-      </FormGroup>
+        <form onSubmit={addUser}>
+          <FormGroup>
+            <Input
+              type="text"
+              value={newUsers.name}
+              placeholder="Name"
+              onChange={(e) =>
+                setNewUsers({ ...newUsers, name: e.target.value })
+              }
+            />
+            {validationErrors.name && (
+              <ErrorMessage>{validationErrors.name}</ErrorMessage>
+            )}
+          </FormGroup>
 
-      <FormGroup>
-        <Input
-          type="password"
-          value={newUser.password}
-          placeholder="Enter your password"
-          onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-        />
-        {validationErrors.password && <ErrorMessage>{validationErrors.password}</ErrorMessage>}
-      </FormGroup>
+          <FormGroup>
+            <Input
+              type="email"
+              value={newUsers.email}
+              placeholder="Enter your Email"
+              onChange={(e) =>
+                setNewUsers({ ...newUsers, email: e.target.value })
+              }
+            />
+            {validationErrors.email && (
+              <ErrorMessage>{validationErrors.email}</ErrorMessage>
+            )}
+          </FormGroup>
 
-      <Button type="submit">Sign-up</Button>
+          <FormGroup>
+            <Input
+              type="password"
+              value={newUsers.password}
+              placeholder="Enter your password"
+              onChange={(e) =>
+                setNewUsers({ ...newUsers, password: e.target.value })
+              }
+            />
+            {validationErrors.password && (
+              <ErrorMessage>{validationErrors.password}</ErrorMessage>
+            )}
+          </FormGroup>
 
-      <p>
-        Already have an account?{" "}
-        <LoginLink onClick={() => setIsLogin(true)}>Login</LoginLink>
-      </p>
-    </Form>
+          <SubmitButton type="submit">Sign-up</SubmitButton>
+
+          {/* Display success message if available */}
+          {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+
+        </form>
+      </LoginContainer>
+    </LoginPageContainer>
   );
 };
 
-export default SignUpForm;
+// Styled components
+const LoginPageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e3c7a2;
+  background-image: url('https://www.kerry.com/content/dam/kerry/en/images/insights/kerrydigest/2023/halal-GettyImages-1175505781.jpg');  // Replace with your image path
+  background-size: cover;  // Ensures the image covers the full container
+  background-position: center;  // Centers the image
+`;
 
+
+const LoginContainer = styled.div`
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+`;
+
+const Heading = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 15px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  margin: 0;
+`;
+
+const SubmitButton = styled.button`
+  width: 100%;
+  padding: 12px;
+  background-color: #442902;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e3c7a2;
+  }
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 15px;
+`;
+
+const Text = styled.p`
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+`;
+
+export default Log;

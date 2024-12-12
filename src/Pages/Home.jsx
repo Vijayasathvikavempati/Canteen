@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
@@ -6,6 +10,7 @@ const SliderWrapper = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
+  text-align: center;  // Ensures text is centered
 `;
 
 const SliderImages = styled.div`
@@ -15,36 +20,50 @@ const SliderImages = styled.div`
 
 const Slide = styled.div`
   min-width: 100%;
-  height: auto;
+  height: 100vh;
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 50%;
   display: block;
 `;
 
-const OverlayText = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const StyledH1 = styled.h1`
+  font-size: 2rem; // Adjust as needed
   color: white;
-  font-size: 14px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
   font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);  /* Optional: adds a shadow to the text for better readability */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); // Shadow for readability
+  padding: 10px;
 `;
 
-
+const StyledP = styled.p`
+  font-size: 20px; // Adjust as needed
+  color: white;
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  padding: 15px;
+  max-width: 80%;
+  background-color: #442902; // Background for text readability
+  border-radius: 8px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+`;
 
 // ImageSlider Component
 const ImageSlider = () => {
   const images = [
-    "https://th.bing.com/th?id=OIP.XLTqTC6UBPAKyFI7HuN_5gHaEw&w=311&h=200&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2",
-    "https://th.bing.com/th?id=OIP.u-431AjZd8tHQLsqLB4h-QHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2",
-    "https://th.bing.com/th?id=OIP.Q_sCQGO4uzOtWflCO3mLqgHaE9&w=305&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.4&pid=3.1&rm=2",
+    "https://www.corporateinteriorsindia.in/images/novus_img2.jpg",
+    "https://qmaxpestcontrol.com/wp-content/uploads/2021/10/restauration-collective.jpg",
+    "https://www.usnews.com/cmsmedia/16/ee/8f640233491db26b3df80d8f11ad/gettyimages-1411322814.jpg",
   ];
-  <OverlayText>Text Overlay</OverlayText>
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -71,6 +90,12 @@ const ImageSlider = () => {
           </Slide>
         ))}
       </SliderImages>
+      <StyledH1>MealMind, where nutrition meets convenience.</StyledH1>
+      <StyledP>
+        That takes the guesswork out of meal planning. It helps you save time,
+        stay on track, and enjoy delicious meals that are good for both your
+        body and mind.
+      </StyledP>
     </SliderWrapper>
   );
 };
