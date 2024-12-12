@@ -8,27 +8,32 @@ import Header from './Components/Header';
 import Footer from "./Components/Footer";
 import Home from './Pages/Home';
 import SignUp from './Pages/Signup';
-import Login from './Pages/login';
+import Login from './Pages/Login';
 // import Dashboard from "./Pages/Dashboard";
 import AboutUs from "./Pages/AboutUs";
+import AppRoute from './Routes/AppRoute';
 
 
 function App() {
   return (
-    <Router>
-      <Header /> {/* The Header component */}
+
+    <>
+    <AppRoute/>
+    </>
+    // <Router>
+    //   <Header /> {/* The Header component */}
       
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login/>} /> 
-        <Route path="/AboutUs" element={<AboutUs/>} />
-        {/* <Route path="/Dashboard" element={<Dashboard/>} /> */}
-      </Routes>
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/signup" element={<SignUp />} />
+    //     <Route path="/login" element={<Login/>} /> 
+    //     <Route path="/AboutUs" element={<AboutUs/>} />
+    //     {/* <Route path="/Dashboard" element={<Dashboard/>} /> */}
+    //   </Routes>
           
-          
-        <Footer />
-    </Router>
+    //       {/* <Dashboard /> */}
+    //     <Footer />
+    // </Router>
   
   );
 }

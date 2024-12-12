@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+//import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   // Initial user data
@@ -12,10 +14,14 @@ const Profile = () => {
     canteenName: 'Canteen',
   };
 
+  useLocation()
+
   // Set up state for user data
   const [user, setUser] = useState(initialUser);
   const [isEditMode, setIsEditMode] = useState(false); // State to toggle between view and edit mode
   const [formData, setFormData] = useState(user);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Handle input change for updating user data
   const handleInputChange = (e) => {
@@ -41,8 +47,10 @@ const Profile = () => {
     setFormData(user); // Reset the form data to the current user state when toggling
   };
 
+
   // Render the profile or a message if user is null (deleted)
   if (!user) {
+    Navigate('/Login')
     return (
       <ProfileContainer>
         <ProfileHeader>

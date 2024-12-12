@@ -1,28 +1,30 @@
-// import React from 'react'
-// import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-// import Mainlayout from '../Layout/Mainlayout'
-// import Home from '../Pages/Home'
-// import Signup from '../Pages/Signup'
-// import Food from '../Pages/Food'
-// import Contact from '../Pages/Contact'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import Mainlayout from '../Layout/Mainlayout'
+import Home from '../Pages/Home'
+import Signup from '../Pages/Signup'
+import AboutUs from '../Pages/AboutUs' 
+import Login from '../Pages/Login'
+import Dashboard from "../Pages/Dashboard"
 
 
-// function AppRoute() {
-//   return (
-//     <>
-//    <Router>
-//     <Mainlayout>
-//    <Routes>
-//     <Route path="/" element={<Home />} />
-//     <Route path="/Signup" element={<Signup />} />
-//     <Route path="/Food" element={<Food />} />
-//     <Route path="/Contact" element={<Contact />} />
-//     {/* <Route path="/Signup" element={<Signup />} /> */}
-//    </Routes>
-//    </Mainlayout>
-//    </Router>
-//    </>
-//   )
-// }
+function AppRoute() {
+  return (
+    <>
+   <Router>
+    <Mainlayout>
+   <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/Signup" element={<Signup />} />
+    <Route path="/login" element={<Login/>} />
+    <Route path='/Dashboard' element={<Dashboard/>}/>
+    <Route path="/AboutUs" element={<AboutUs />} />
 
-// export default AppRoute
+   </Routes>
+   </Mainlayout>
+   </Router>
+   </>
+  )
+}
+
+export default AppRoute

@@ -88,9 +88,7 @@ const Header = () => {
           <li>
             <NavLinkStyled to="/login">Login</NavLinkStyled>
           </li>
-          {/* <li>
-            <NavLinkStyled to="/Dashboard">Dashboard</NavLinkStyled>
-          </li> */}
+          
         </NavLinks>
       </Nav>
     </HeaderWrapper>
