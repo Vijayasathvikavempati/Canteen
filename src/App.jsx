@@ -20,21 +20,7 @@ function App() {
     <>
     <AppRoute/>
     </>
-    // <Router>
-    //   <Header /> {/* The Header component */}
-      
-    //   <Routes>
-    //     <Route path="/" element={<Home />} />
-    //     <Route path="/signup" element={<SignUp />} />
-    //     <Route path="/login" element={<Login/>} /> 
-    //     <Route path="/AboutUs" element={<AboutUs/>} />
-    //     {/* <Route path="/Dashboard" element={<Dashboard/>} /> */}
-    //   </Routes>
-          
-    //       {/* <Dashboard /> */}
-    //     <Footer />
-    // </Router>
-  
+    
   );
 }
 
