@@ -146,6 +146,44 @@
       "password": "vijaya",
       "id": "ihVZy5b",
       "lastLogin": "2024-12-16T06:58:07.568Z"
+    },
+    {
+      "name": "hari",
+      "email": "hari@gmail.com",
+      "password": "123456",
+      "id": "-bk9PkO",
+      "lastLogin": "2024-12-17T13:12:02.087Z"
+    },
+    {
+      "name": "hari",
+      "email": "hari@gmail.com",
+      "password": "1234567",
+      "id": "NASIOTs",
+      "lastLogin": "2024-12-18T13:23:52.742Z"
+    },
+    {
+      "profile": {
+        "id": 1,
+        "name": "Sathvika",
+        "role": "Student",
+        "email": "sathvikavijju@gmail.com",
+        "phone": "9826345722",
+        "profilePicture": "https://th.bing.com/th/id/OIP.uxb1jLLnY2-zok-gTXlZlQHaHa?w=158&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7",
+        "canteenName": "Canteen"
+      }
+    },
+    {
+      "name": "hari",
+      "email": "hari@gmail.com",
+      "password": "123",
+      "id": "dJexcrk",
+      "lastLogin": "2024-12-18T14:14:07.798Z"
+    },
+    {
+      "name": "hari",
+      "email": "hari@gmail.com",
+      "password": "1234",
+      "id": "nBRhDke"
     }
   ]
 }
